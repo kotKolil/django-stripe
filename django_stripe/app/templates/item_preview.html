@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+</head>
+<body>
+    <div class = "item_card">
+        <div>
+            <H1>{{item}}</H1>
+            <p>{{description}}</p>
+            <p>{{price}}$</p>
+            <button onclick="buy( {{id}}, '{{publish_key}}' )  ">buy</button>
+        </div>
+    </div>
+</body>
+</html>
