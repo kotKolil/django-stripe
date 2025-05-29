@@ -3,9 +3,6 @@ FROM PYTHON:3.13
 RUN mkdir /app
 WORKDIR /app
 
-ENV PUBLISH_KEY = ""
-ENV API_KEY_STRIPE = ""
-
 COPY .  /app/
 RUN pip install --no-cache-dir -r r.txt
 

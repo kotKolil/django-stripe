@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from app.config import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-u^(b3gah4jj(i5fd0#yy_mw@0jj*qtn)oifmok)a80bii3r-j^
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "qhokd9-95-55-86-42.ru.tuna.am"
+    "9733438c5c674b943b9cf6e611ce49cf.serveo.net"
 ]
 
 
@@ -80,10 +81,10 @@ WSGI_APPLICATION = 'django_stripe.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django-stripe',
-        'USER': 'postgres',
-        'PASSWORD': '14037176',
-        'HOST': '127.0.0.1',
+        'NAME': POSTGRES_HOST,
+        'USER': POSTGRES_USER,
+        'PASSWORD': POSTGRES_PASSWORD,
+        'HOST': POSTGRES_HOST,
         'PORT': '5432',
     }
 }
