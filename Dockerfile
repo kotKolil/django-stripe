@@ -1,0 +1,14 @@
+FROM PYTHON:3.13
+
+RUN mkdir /app
+WORKDIR /app
+
+ENV PUBLISH_KEY = ""
+ENV API_KEY_STRIPE = ""
+
+COPY .  /app/
+RUN pip install --no-cache-dir -r r.txt
+
+EXPOSE 8000
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
