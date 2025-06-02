@@ -1,4 +1,4 @@
-const stripe = Stripe("")
+const stripe = Stripe("pk_test_51RTgEeCmRS5EjMaHuxIKUiQgAzvrIK0XqzS2kgPNVDF5b1mOJnyRg85NzkQeZbtnp4vnuWHPlixpEURqxrbQ3UCy00fJtBo5nv")
 const elements = stripe.elements();
 const cardElement = elements.create('card');
 
@@ -21,6 +21,9 @@ function buy (id,) {
          stripe.confirmCardPayment(`${data.data}`, {
             payment_method: {
                 card: cardElement,
+                billing_details: {
+                    name: 'John Doe',
+                },
             },
         })
  .then( (data) => {
