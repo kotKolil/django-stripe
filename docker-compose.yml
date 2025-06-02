@@ -4,13 +4,13 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfiles.dev
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     environment:
-      - POSTGRES_HOST=database
-      - POSTGRES_DB=django-stripe
-      - POSTGRES_USER=postgres
+      - POSTGRES_HOST=
+      - POSTGRES_DB=
+      - POSTGRES_USER=
       - POSTGRES_PASSWORD=
       - PUBLISH_KEY=
       - API_KEY_STRIPE=
@@ -20,9 +20,9 @@ services:
   database:
     image: postgres:latest
     environment:
-      POSTGRES_DB: django-stripe
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD:
+      - POSTGRES_DB=
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
     ports:
       - "5432:5432"
     volumes:

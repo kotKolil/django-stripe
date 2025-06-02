@@ -1,6 +1,13 @@
-function buy (id, api_token) {
+const stripe = Stripe("")
+const elements = stripe.elements();
+const cardElement = elements.create('card');
 
-    const stripe = Stripe(api_token)
+window.onload = () =>
+{
+    cardElement.mount('#card-element');
+}
+
+function buy (id,) {
 
     // Call your backend to create the Checkout Session
     fetch(`/buy/${id}`, {
@@ -9,13 +16,26 @@ function buy (id, api_token) {
     .then(function(response) {
         return response.json();
     })
-    .then(function(session) {
-        return stripe.redirectToCheckout({ sessionId: session.id });
-    })
-    .then(function(result) {
-        if (result.error) {
-            alert(result.error.message);
-            }
-        });
+
+.then(data => {
+         stripe.confirmCardPayment(`${data.data}`, {
+            payment_method: {
+                card: cardElement,
+                billing_details: {
+                    name: 'John Doe',
+                },
+            },
+        })
+ .then( (data) => {
+        console.log(data)
+        if (data.error) {
+            alert(`error: ${data.error.message}`)
+            return
+        }
+        window.location.replace ("/")
+     }
+    )
+    }
+  );
 
 }

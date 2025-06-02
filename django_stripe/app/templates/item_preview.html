@@ -1,18 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{item}}</title>
     <script src="https://js.stripe.com/v3/"></script>
-    <link rel="stylesheet" href="/static/style.css">
     <script src="/static/script.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .item_card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .item_content {
+            padding: 25px;
+            border-radius: 12px;
+            border: 3px solid #2c3e50;
+            background: #f8f9fa;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .item_content h1 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 1.8rem;
+        }
+
+        .item_content p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 1.4rem;
+            color: #27ae60;
+        }
+
+        .buy_btn {
+            width: 100%;
+            max-width: 200px;
+            height: 50px;
+            border-radius: 10px;
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .buy_btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .buy_btn:active {
+            transform: translateY(0);
+        }
+
+        /* Стили для формы оплаты */
+        #payment-form {
+            width: 100%;
+            max-width: 600px;
+            padding: 25px;
+            border-radius: 12px;
+            border: 3px solid #2c3e50;
+            background: #f8f9fa;
+            margin-top: 20px;
+            display: none; /* Скрываем по умолчанию */
+        }
+
+        .card-errors {
+            color: #e74c3c;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        #submit-payment {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+    </style>
 </head>
 <body>
-    <div class = "item_card">
-        <div>
-            <H1>{{item}}</H1>
+    <div class="item_card">
+        <div class="item_content">
+            <h1>{{item}}</h1>
             <p>{{description}}</p>
-            <p>{{price}}$</p>
-            <button onclick="buy( {{id}}, '{{publish_key}}' )  ">buy</button>
+            <p class="price">{{price}} $</p>
+            <button class="buy_btn" onclick="buy('{{id}}')">
+                Buy
+            </button>
+            <div id="card-element"></div>
+            </form>
         </div>
     </div>
 </body>
